@@ -1,182 +1,181 @@
-[
-{
-  "userId": 1,
-  "username": "satish sharma",
-  "emailid": "satishsharma@gmail.com",
-   
-},
-{
-	"userId": 2,
-	"username": "rakesh",
-	"emailid": "rakesh@gmail.com",
-	 
-  },
-  {
-	"userId": 3,
-	"username": "Dev prakash",
-	"emailid": "dev@gmail.com",
-	 
-  },
-  {
-	"userId": 4,
-	"username": "Niharika",
-	"emailid": "riharika@gmail.com",
-	 
-  },
-  {
-	"userId": 5,
-	"username": "Neelam",
-	"emailid": "Neelam@gmail.com",
-	 
-  },
-  {
-	"userId": 6,
-	"username": "prakash",
-	"emailid": "prakash@gmail.com",
-	 
-  },
-          {
-	"userId": 7,
-	"username": "satish sharma",
-	"emailid": "satishsharma@gmail.com",
-	 
-  },
-  {
-	  "userId": 8,
-	  "username": "rakesh",
-	  "emailid": "rakesh@gmail.com",
-	   
+[{
+		"userId": 1,
+		"username": "satish sharma",
+		"emailid": "satishsharma@gmail.com"
+
 	},
 	{
-	  "userId": 9,
-	  "username": "Dev prakash",
-	  "emailid": "dev@gmail.com",
-	   
+		"userId": 2,
+		"username": "rakesh",
+		"emailid": "rakesh@gmail.com"
+
 	},
 	{
-	  "userId": 10,
-	  "username": "Niharika",
-	  "emailid": "riharika@gmail.com",
-	   
+		"userId": 3,
+		"username": "Dev prakash",
+		"emailid": "dev@gmail.com"
+
 	},
 	{
-	  "userId": 11,
-	  "username": "Neelam",
-	  "emailid": "Neelam@gmail.com",
-	   
+		"userId": 4,
+		"username": "Niharika",
+		"emailid": "riharika@gmail.com"
+
 	},
 	{
-	  "userId": 12,
-	  "username": "prakash",
-	  "emailid": "prakash@gmail.com",
-	   
+		"userId": 5,
+		"username": "Neelam",
+		"emailid": "Neelam@gmail.com"
+
 	},
 	{
-    "userId": 13,
-    "username": "satish sharma",
-    "emailid": "satishsharma@gmail.com",
- 
-	  },
-	  {
-  "userId": 14,
-  "username": "rakesh",
-  "emailid": "rakesh@gmail.com",
-   
-},
-{
-  "userId": 15,
-  "username": "Dev prakash",
-  "emailid": "dev@gmail.com",
-   
-},
-{
-  "userId": 16,
-  "username": "Niharika",
-  "emailid": "riharika@gmail.com",
-   
-},
-{
-  "userId": 17,
-  "username": "Neelam",
-  "emailid": "Neelam@gmail.com",
-   
-},
-{
-  "userId": 18,
-  "username": "prakash",
-  "emailid": "prakash@gmail.com",
-   
-},
-{
-	"userId": 19,
-	"username": "rajkishor",
-	"emailid": "rajkishor@gmail.com",
-	 
-  },
-  {
-	  "userId": 20,
-	  "username": "devanand",
-	  "emailid": "devannad@gmail.com",
-	   
+		"userId": 6,
+		"username": "prakash",
+		"emailid": "prakash@gmail.com"
+
 	},
 	{
-	  "userId": 21,
-	  "username": "tabhu sahu",
-	  "emailid": "tabhu@gmail.com",
-	   
+		"userId": 7,
+		"username": "satish sharma",
+		"emailid": "satishsharma@gmail.com"
+
 	},
 	{
-	  "userId": 22,
-	  "username": "chandan",
-	  "emailid": "chandanprakash@gmail.com",
-	   
+		"userId": 8,
+		"username": "rakesh",
+		"emailid": "rakesh@gmail.com"
+
 	},
 	{
-	  "userId": 23,
-	  "username": "stevan",
-	  "emailid": "stevanhook@gmail.com",
-	   
+		"userId": 9,
+		"username": "Dev prakash",
+		"emailid": "dev@gmail.com"
+
 	},
 	{
-	  "userId": 24,
-	  "username": "shivaridos",
-	  "emailid": "shivaridos@gmail.com",
-	   
+		"userId": 10,
+		"username": "Niharika",
+		"emailid": "riharika@gmail.com"
+
 	},
 	{
-    "userId": 25,
-    "username": "ram prakash",
-    "emailid": "ramprakash@gmail.com",
- 
-	  },
-	  {
-    "userId": 26,
-    "username": "pamamand",
-    "emailid": "pamamand@gmail.com",
-   
-    },
-    {
-    "userId": 27,
-    "username": "Dev prakash",
-    "emailid": "dev@gmail.com",
-    
-    },
-    {
-    "userId": 28,
-    "username": "Niharika",
-    "emailid": "riharika@gmail.com",
-    
-    },
-    {
-    "userId": 29,
-    "username": "Neelam",
-    "emailid": "Neelam@gmail.com",
-    
-    },
-    {
-    "userId": 30,
-    "username": "prakash",
-    "emailid": "prakash@gmail.com",
-    
-    }
-    ]
+		"userId": 11,
+		"username": "Neelam",
+		"emailid": "Neelam@gmail.com"
+
+	},
+	{
+		"userId": 12,
+		"username": "prakash",
+		"emailid": "prakash@gmail.com"
+
+	},
+	{
+		"userId": 13,
+		"username": "satish sharma",
+		"emailid": "satishsharma@gmail.com"
+
+	},
+	{
+		"userId": 14,
+		"username": "rakesh",
+		"emailid": "rakesh@gmail.com"
+
+	},
+	{
+		"userId": 15,
+		"username": "Dev prakash",
+		"emailid": "dev@gmail.com"
+
+	},
+	{
+		"userId": 16,
+		"username": "Niharika",
+		"emailid": "riharika@gmail.com"
+
+	},
+	{
+		"userId": 17,
+		"username": "Neelam",
+		"emailid": "Neelam@gmail.com"
+
+	},
+	{
+		"userId": 18,
+		"username": "prakash",
+		"emailid": "prakash@gmail.com"
+
+	},
+	{
+		"userId": 19,
+		"username": "rajkishor",
+		"emailid": "rajkishor@gmail.com"
+
+	},
+	{
+		"userId": 20,
+		"username": "devanand",
+		"emailid": "devannad@gmail.com"
+
+	},
+	{
+		"userId": 21,
+		"username": "tabhu sahu",
+		"emailid": "tabhu@gmail.com"
+
+	},
+	{
+		"userId": 22,
+		"username": "chandan",
+		"emailid": "chandanprakash@gmail.com"
+
+	},
+	{
+		"userId": 23,
+		"username": "stevan",
+		"emailid": "stevanhook@gmail.com"
+
+	},
+	{
+		"userId": 24,
+		"username": "shivaridos",
+		"emailid": "shivaridos@gmail.com"
+
+	},
+	{
+		"userId": 25,
+		"username": "ram prakash",
+		"emailid": "ramprakash@gmail.com"
+
+	},
+	{
+		"userId": 26,
+		"username": "pamamand",
+		"emailid": "pamamand@gmail.com"
+
+	},
+	{
+		"userId": 27,
+		"username": "Dev prakash",
+		"emailid": "dev@gmail.com"
+
+	},
+	{
+		"userId": 28,
+		"username": "Niharika",
+		"emailid": "riharika@gmail.com"
+
+	},
+	{
+		"userId": 29,
+		"username": "Neelam",
+		"emailid": "Neelam@gmail.com"
+
+	},
+	{
+		"userId": 30,
+		"username": "prakash",
+		"emailid": "prakash@gmail.com"
+
+	}
+]
