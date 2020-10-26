@@ -1,102 +1,114 @@
- 
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
- 
+
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
     <title>Simple CRUD operation</title>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    
+    <script src="edit.js" type="text/javascript"></script>
+
     <style>
-        *{
+        * {
             margin: 10px 50px;
         }
-        tr,th,td{
+        a{
+            padding: 4px 0px;
+            margin : 10px auto;
+        }
+        tr,
+        th,
+        td {
             width: 200px;
         }
-       
-        .container-fluid{
-            
-             
+
+        .container-fluid {
+
+
             min-height: 10em;
             display: table-cell;
             vertical-align: middle
-         }
-         
+        }
+
         .pagination {
-        display: inline-block;
+            display: inline-block;
         }
-        
+
         .pagination a {
-        color: black;
-        float: left;
-        padding: 8px 16px;
-        text-decoration: next;
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: next;
         }
+
         .right {
-        position: absolute;
-        right: 100px;
-        width: auto;
-            
-        padding: 0px;
+            position: absolute;
+            right: 100px;
+            width: auto;
+
+            padding: 0px;
         }
+
         input[type=text] {
             width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            box-sizing: border-box;
-          }
-        th{
+
+            display: inline-block;
+
+        }
+
+        th {
             margin: 0 10px;
-            background-color : grey;
+            background-color: grey;
             padding: 10px 100px;
         }
-        
-        .popup-overlay {
-            visibility:hidden;
-            }
-         
-        .invisibletb{
-            border:none;
-             
-           }
-        .popup-content {
-            visibility:hidden;
-            }
-        .popup-overlay.active{
-            visibility:visible;
-            }
-                
-        .popup-content.active {
-            visibility:visible;
-            }
 
-            /* Modal Header */
+        td {
+            background-color: whitesmoke;
+        }
+
+        .popup-overlay {
+            visibility: hidden;
+        }
+
+        .popup-content {
+            visibility: hidden;
+        }
+
+        .popup-overlay.active {
+            visibility: visible;
+        }
+
+        .popup-content.active {
+            visibility: visible;
+        }
+
+        /* Modal Header */
         .modal-header {
-            padding: 2px 3px;
+            padding: 2px 2px;
             background-color: #5cb85c;
             color: white;
         }
-        
+
         /* Modal Body */
-        .modal-body {padding: 2px 2px;}
-        
+        .modal-body {
+            padding: 2px 2px;
+        }
+
         /* Modal Footer */
         .modal-footer {
-             
+            padding: 2px 2px;
             background-color: #5cb85c;
             color: white;
         }
-        
+
         /* Modal Content */
         .modal-content {
             position: relative;
@@ -104,167 +116,229 @@
             margin: auto;
              
             border: 1px solid #888;
-             
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            width: 100%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             animation-name: animatetop;
             animation-duration: 0.4s;
-             
+
         }
-        
+
         /* Add Animation */
         @keyframes animatetop {
-            from {top: -300px; opacity: 0}
-            to {top: 0; opacity: 1}
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
         }
-        </style>
+
+        .invisibletb {
+            border: none;
+
+        }
+        .divpage{
+            margin:auto;
+            width:50%;
+            padding: 10px;
+        }
+        
+    </style>
+
+
+
+
+
+    <script type="text/javascript">
          
-       
-           
+        $(document).ready(function (data) {   
+            
+            // delete the contents selected 
+            $("#delButton").click(function(){
 
-        </script>
-        <script type="text/javascript">
-            $(document).ready(function(data){
-            $.getJSON("https://my-json-server.typicode.com/satishsharmaapo/users/users",{},
-                        function (data) {
-                            var employee_data='';
-                            $.each(data,function(key,value){
-                                 employee_data += "<tbody><tr onclick='mclick(this)' onmouseover='mover(this)' onmouseout='mout(this)'>";
-                                 employee_data += '<td>' + "<input type='checkbox' id='"+ value.id +"'"+ "name='"+ value.id +"'/></td>";
-                                 employee_data += "<td><input type='text' disabled='disabled' class='invisibletb' id='10"+ value.id +"'"+ "name='10"+ value.id +"'"+ "value='10"+ value.id+"'/></td>";
- 
-                                 employee_data += "<td><input type='text' disabled='disabled' class='invisibletb'  id='" + value.username +"' "+ "name= '"+ value.username +"' "+ "value= '"+ value.username+"'/></td>";
-                                 employee_data += "<td><input type='text' disabled='disabled' class='invisibletb'   id='" + value.emailid +"' "+ "name= '"+ value.emailid +"' "+ "value ='"+ value.emailid+"'/></td>";
-                                 employee_data += '</tr></tbody>';
-                            });
-                            $('#userdata').append(employee_data);
-
-                            
-                        });
-                        $('#userdata').after('<div id="nav"></div>');
-                        var rowsShown = 4;
-                        var rowsTotal = $('#userdata tbody tr').length;
-                        var numPages = rowsTotal/rowsShown;
-                        for(i = 0;i < numPages;i++) {
-                            var pageNum = i + 10;
-                            $('#nav').append('<a href="#" rel="'+i+'">'+pageNum+'</a> ');
+                if(confirm("are you sure you want to delete"))
+                {
+                    var arr_id = [];
+                    
+                    $(":checkbox:checked").each(function(i){
+                        arr_id[i] = $(this).attr("id");
+                        fetch('http://localhost:3000/users/'+parseInt(arr_id[i]),
+                        {
+                            method: 'DELETE',
+                        })
+                    })
+                    if(arr_id.length == 0){
+                        alert("atleast check one");
+                        $('#editButton').attr("disabled","disabled");
+                    }else if (arr_id.length ==1){
+                        $('#editButton').prop("disabled",false);
+                          for(var i = 0;i<arr_id.length;i++){
+                          console.log(arr_id[i]);                             
                         }
-                        $('#userdata tbody tr').hide();
-                        $('#userdata tbody tr').slice(0, rowsShown).show();
-                        $('#nav a:first').addClass('active');
-                        $('#nav a').bind('click', function(){
-                
-                            $('#nav a').removeClass('active');
-                            $(this).addClass('active');
-                            var currPage = $(this).attr('rel');
-                            var startItem = currPage * rowsShown;
-                            var endItem = startItem + rowsShown;
-                            $('#userdata tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
-                                    css('display','table-row').animate({opacity:1}, 300);
-                        });
+                    }
+                    
+                }
+            else{
+                return false;
+            }
+                });
+
+            // get list of item is html 
+             $.getJSON("http://localhost:3000/users/", {},
+                function (data) {
+                    var employee_data = '';
+                    $.each(data, function (key, value) {
+                        employee_data += "<tbody><tr>";
+                        employee_data += '<td>' + "<input type='checkbox' class='checkbox1' onclick='' id='" + value.id + "'" + "name='" + value.id + "'/></td>";
+                        employee_data += "<td><input type='text' disabled='disabled' class='invisibletb' id='1" + value.id + "'" + "name='" + value.id + "'" + "value='" + value.id + "'/></td>";
+
+                        employee_data += "<td><input type='text' disabled='disabled' class='invisibletb'  id='" + value.username + "' " + "name= '" + value.username + "' " + "value= '" + value.username + "'/></td>";
+                        employee_data += "<td><input type='text' disabled='disabled' class='invisibletb'   id='" + value.emailid + "' " + "name= '" + value.emailid + "' " + "value ='" + value.emailid + "'/></td>";
+                        employee_data += '</tr></tbody>';
                     });
-                       
-        </script>
-        <script type="text/javascript">
-            $(document).ready(function(){     
-                    $(".model-content").show();
-                    $("#addButton").on("click",function(){
-                        $(".model-content").show();
-                    });
-                    $("#close").on("click",function(){
-                        $(".model-content").hide();
-                    });                   
-                     
+                    $('#userdata').append(employee_data);
+
+
+                });
+            $('#userdata').after('<div id="nav"></div>');
+            var rowsShown = 4;
+            var rowsTotal = $('#userdata tbody tr').length;
+            var numPages = rowsTotal / rowsShown;
+            for (i = 0; i < numPages; i++) {
+                var pageNum = i + 10;
+                $('#nav').append('<a href="#" rel="' + i + '">' + pageNum + '</a> ');
+            }
+            $('#userdata tbody tr').hide();
+            $('#userdata tbody tr').slice(0, rowsShown).show();
+            $('#nav a:first').addClass('active');
+            $('#nav a').bind('click', function () {
+
+                $('#nav a').removeClass('active');
+                $(this).addClass('active');
+                var currPage = $(this).attr('rel');
+                var startItem = currPage * rowsShown;
+                var endItem = startItem + rowsShown;
+                $('#userdata tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
+                    css('display', 'table-row').animate({ opacity: 1 }, 300);
             });
-            function close(){
-                document.getElementById(".modal-content").close();
-            };
-            fetch('https://my-json-server.typicode.com/satishsharmaapo/users/users', {
-                method: 'POST',
-                body: JSON.stringify({
-                  username: 'foo',
-                  emailid: 'bar@gmail.com'
-                 
-                }),
-                headers: {
-                  'Content-type': 'application/json; charset=UTF-8',
-                },
-              })
-                .then((response) => response.json())
-                .then((json) => console.log(json))
+        });
+     
+        
+         
+            
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".model-content").show();
+            $("#addButton").on("click", function () {
+                $(".model-content").show();
+            });
+            $("#close").on("click", function () {
+                $(".model-content").hide();
+            });
+
+        });
+        function close() {
+            document.getElementById(".modal-content").close();
+        };
               
-        </script>
-  </head>
-  <body>
-    <div class="container-fluid ">
-        <div class="row d-flex">
-                <div class="d-flex justify-content-start"> 
-                    <h2>Table FORM</h2>
-                </div>
-                <div class="d-flex justify-content-end"> 
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal" style="float:right">Add | +</button>
-                    <button type="button" id="addButton" class="btn btn-primary" data-dismiss="modal" style="float:right">Edit</button>    
-                </div>          
+   
+    </script>
+    
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="row col-sm" >
+                <h2>Table FORM</h2>
             </div>
-                         
-                                                       
-                        
+            <div class="row col-sm" >
+                <button type="button" id="editButton" class="btn btn-primary" data-dismiss="modal"
+                    style="float:right" disabled="disabled">Edit</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal"
+                    style="float:right" id="addButton">Add | +</button>
                 
-               <!-- model creation -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
+            </div>
+        </div>
+
+
+
+
+        <!-- model creation -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Add Data</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                            <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form  method="POST">
-                         
-                        <div class="form-group">
-                            <label for="user-name"  style="width:200px;" class="col-form-label">username</label>
-                            <input type="text" style="width:200px;" class="form-control" id="username">
-                        </div>
-                        <div class="form-group">
-                            <label for="email-id" style="width:200px;" class="col-form-label">Email Id</label>
-                            <input type="text"  style="width:200px;" class="form-control" id="emailid"></input>
-                        </div>
+                        <form method="post" id="form">
+
+                            <div class="form-group">
+                                <label for="user-name" class="col-form-label" style="width:200px;">username</label>
+                                <input type="text" class="form-control" id="username" name="username"
+                                    style="width:200px;">
+                            </div>
+                            <div class="form-group">
+                                <label for="email-id" class="col-form-label" style="width:200px;">Email Id</label>
+                                <input type="text" class="form-control" id="emailid" name="emailid"
+                                    style="width:200px;" />
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Submit"   /> 
+                                </button>
+                            </div>
+
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onClick="submit" >Save</button>
-                    </div>
-                    </div>
+
                 </div>
-                </div>                    
-            </div>     
-    <div class="row">
-        <div class="col-sm-10 datatable1" id="nav" >
-          <table id="userdata" class="table table-bordered table-condensed table-striped">
-            <thead>
-              <tr>
-                <th><input type="checkbox" name="CheckAll" id="checkAll" /></th>
-                <th>User id</th>
-                <th>username</th>
-                <th>Email</th>
-              </tr>
-            </thead>
-          </table>
+            </div>
         </div>
     </div>
-   <div class="pagination">
-   
-        <a href="#" id="1">1</a>
-        <a href="#" id="2">2</a>
-        <a href="#" >3</a>
-        <a href="#">4</a>
-        <a href="#">NEXT</a>
-   
-  <a href="#">Last &raquo;</a>
-  </div>
-  <!-- Optional JavaScript -->
-   
-  </body>
+    <div class="row">
+        <div class="col-sm-10 datatable1" id="nav">
+            <table id="userdata" class="table table-bordered table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" name="CheckAll" id="checkAll" /></th>
+                        <th>User id</th>
+                        <th>username</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+            </table>
+            
+        </div>
+    </div>
+    <div class="row divpage" >
+        <div class="col-sm-2 divpage">
+        <button type="button" id="delButton" name="delButton" class="bt btn-light">Delete</button>
+        </div>
+        <div class="pagination col-sm-10 divpage">
+            
+            <a href="#" id="1">1</a>
+            <a href="#" id="2">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">NEXT &rsaquo;</a>
+
+            <a href="#">Last &raquo;</a>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->  
+</body>
+<script src="posts.js" type="text/javascript">    
+</script>
+<script src="puts.js" type="text/javascript">    
+</script>
 </html>
