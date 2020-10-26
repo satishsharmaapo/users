@@ -23,7 +23,7 @@ checkboxes.click(function() {
     
     $(".checkbox1").click(function() {
         if(this.checked) {
-            counter++;
+            counter++; 
             if(counter == 1){
                 $("#editButton").attr("disabled", !checkboxes.is(":checked"));
             }
