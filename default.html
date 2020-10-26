@@ -64,7 +64,11 @@
         .popup-overlay {
             visibility:hidden;
             }
-            
+         
+        .invisibletb{
+            border:none;
+             
+           }
         .popup-content {
             visibility:hidden;
             }
@@ -124,11 +128,12 @@
                         function (data) {
                             var employee_data='';
                             $.each(data,function(key,value){
-                                 employee_data += '<tbody><tr>';
-                                 employee_data += '<td>' + "<input type='checkbox' id='"+ value.id +"' ></td>";
-                                 employee_data += "<td contenteditable='false'>" + value.id   + '</td>';
-                                 employee_data += "<td contenteditable='false'>"  + value.username + '</td>';
-                                 employee_data += "<td contenteditable='false'>"  + value.emailid  + '</td>';
+                                 employee_data += "<tbody><tr onclick='mclick(this)' onmouseover='mover(this)' onmouseout='mout(this)'>";
+                                 employee_data += '<td>' + "<input type='checkbox' id='"+ value.id +"'"+ "name='"+ value.id +"'/></td>";
+                                 employee_data += "<td><input type='text' disabled='disabled' class='invisibletb' id='10"+ value.id +"'"+ "name='10"+ value.id +"'"+ "value='10"+ value.id+"'/></td>";
+ 
+                                 employee_data += "<td><input type='text' disabled='disabled' class='invisibletb'  id='" + value.username +"' "+ "name= '"+ value.username +"' "+ "value= '"+ value.username+"'/></td>";
+                                 employee_data += "<td><input type='text' disabled='disabled' class='invisibletb'   id='" + value.emailid +"' "+ "name= '"+ value.emailid +"' "+ "value ='"+ value.emailid+"'/></td>";
                                  employee_data += '</tr></tbody>';
                             });
                             $('#userdata').append(employee_data);
