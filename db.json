@@ -1,5 +1,6 @@
-[
-   "users" : {
+{
+   [
+    {
     "id": 1,
     "username": "satish sharma",
     "emailid": "satishsharma@gmail.com"
@@ -150,3 +151,4 @@
     "emailid": "prakash@gmail.com"
   }
 ]
+}
