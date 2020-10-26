@@ -1,0 +1,265 @@
+ 
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+
+    <title>Simple CRUD operation</title>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+    <style>
+        *{
+            margin: 10px 50px;
+        }
+        tr,th,td{
+            width: 200px;
+        }
+       
+        .container-fluid{
+            
+             
+            min-height: 10em;
+            display: table-cell;
+            vertical-align: middle
+         }
+         
+        .pagination {
+        display: inline-block;
+        }
+        
+        .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: next;
+        }
+        .right {
+        position: absolute;
+        right: 100px;
+        width: auto;
+            
+        padding: 0px;
+        }
+        input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+          }
+        th{
+            margin: 0 10px;
+            background-color : grey;
+            padding: 10px 100px;
+        }
+        
+        .popup-overlay {
+            visibility:hidden;
+            }
+            
+        .popup-content {
+            visibility:hidden;
+            }
+        .popup-overlay.active{
+            visibility:visible;
+            }
+                
+        .popup-content.active {
+            visibility:visible;
+            }
+
+            /* Modal Header */
+        .modal-header {
+            padding: 2px 16px;
+            background-color: #5cb85c;
+            color: white;
+        }
+        
+        /* Modal Body */
+        .modal-body {padding: 2px 16px;}
+        
+        /* Modal Footer */
+        .modal-footer {
+            padding: 2px 16px;
+            background-color: #5cb85c;
+            color: white;
+        }
+        
+        /* Modal Content */
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            border: 1px solid #888;
+            width: 80%;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            animation-name: animatetop;
+            animation-duration: 0.4s;
+             
+        }
+        
+        /* Add Animation */
+        @keyframes animatetop {
+            from {top: -300px; opacity: 0}
+            to {top: 0; opacity: 1}
+        }
+        </style>
+         
+       
+           
+
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function(data){
+            $.getJSON("https://my-json-server.typicode.com/satishsharmaapo/users/users",{},
+                        function (data) {
+                            var employee_data='';
+                            $.each(data,function(key,value){
+                                 employee_data += '<tbody><tr>';
+                                 employee_data += '<td>' + "<input type='checkbox' id='"+ value.id +"' ></td>";
+                                 employee_data += "<td contenteditable='false'>" + value.id   + '</td>';
+                                 employee_data += "<td contenteditable='false'>"  + value.username + '</td>';
+                                 employee_data += "<td contenteditable='false'>"  + value.emailid  + '</td>';
+                                 employee_data += '</tr></tbody>';
+                            });
+                            $('#userdata').append(employee_data);
+
+                            
+                        });
+                        $('#userdata').after('<div id="nav"></div>');
+                        var rowsShown = 4;
+                        var rowsTotal = $('#userdata tbody tr').length;
+                        var numPages = rowsTotal/rowsShown;
+                        for(i = 0;i < numPages;i++) {
+                            var pageNum = i + 10;
+                            $('#nav').append('<a href="#" rel="'+i+'">'+pageNum+'</a> ');
+                        }
+                        $('#userdata tbody tr').hide();
+                        $('#userdata tbody tr').slice(0, rowsShown).show();
+                        $('#nav a:first').addClass('active');
+                        $('#nav a').bind('click', function(){
+                
+                            $('#nav a').removeClass('active');
+                            $(this).addClass('active');
+                            var currPage = $(this).attr('rel');
+                            var startItem = currPage * rowsShown;
+                            var endItem = startItem + rowsShown;
+                            $('#userdata tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
+                                    css('display','table-row').animate({opacity:1}, 300);
+                        });
+                    });
+                       
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function(){     
+                    $(".model-content").show();
+                    $("#addButton").on("click",function(){
+                        $(".model-content").show();
+                    });
+                    $("#close").on("click",function(){
+                        $(".model-content").hide();
+                    });                   
+                     
+            });
+            function close(){
+                document.getElementById(".modal-content").close();
+            };
+            fetch('https://my-json-server.typicode.com/satishsharmaapo/users/users', {
+                method: 'POST',
+                body: JSON.stringify({
+                  username: 'foo',
+                  emailid: 'bar@gmail.com'
+                 
+                }),
+                headers: {
+                  'Content-type': 'application/json; charset=UTF-8',
+                },
+              })
+                .then((response) => response.json())
+                .then((json) => console.log(json))
+              
+        </script>
+  </head>
+  <body>
+    <div class="container-fluid ">
+        <div class="row d-flex">
+                <div class="d-flex justify-content-start"> 
+                    <h2>Table FORM</h2>
+                </div>
+                <div class="d-flex justify-content-end"> 
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal" style="float:right">Add | +</button>
+                    <button type="button" id="addButton" class="btn btn-primary" data-dismiss="modal" style="float:right">Edit</button>    
+                </div>          
+            </div>
+                         
+                                                       
+                        
+                
+               <!-- model creation -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Data</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form  method="POST">
+                         
+                        <div class="form-group">
+                            <label for="user-name" class="col-form-label">username</label>
+                            <input type="text" class="form-control" id="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="email-id" class="col-form-label">Email Id</label>
+                            <input type="text" class="form-control" id="emailid"></input>
+                        </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onClick="submit" >Save</button>
+                    </div>
+                    </div>
+                </div>
+                </div>                    
+            </div>     
+    <div class="row">
+        <div class="col-sm-10 datatable1" id="nav" >
+          <table id="userdata" class="table table-bordered table-condensed table-striped">
+            <thead>
+              <tr>
+                <th><input type="checkbox" name="CheckAll" id="checkAll" /></th>
+                <th>User id</th>
+                <th>username</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+    </div>
+   <div class="pagination">
+   
+        <a href="#" id="1">1</a>
+        <a href="#" id="2">2</a>
+        <a href="#" >3</a>
+        <a href="#">4</a>
+        <a href="#">NEXT</a>
+   
+  <a href="#">Last &raquo;</a>
+  </div>
+  <!-- Optional JavaScript -->
+   
+  </body>
+</html>
