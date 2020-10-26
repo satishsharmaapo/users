@@ -194,10 +194,10 @@
                     $.each(data, function (key, value) {
                         employee_data += "<tbody><tr>";
                         employee_data += '<td>' + "<input type='checkbox' class='checkbox1' onclick='' id='" + value.id + "'" + "name='" + value.id + "'/></td>";
-                        employee_data += "<td><input type='text' disabled='disabled' class='invisibletb' id='1" + value.id + "'" + "name='" + value.id + "'" + "value='" + value.id + "'/></td>";
+                        employee_data += "<td><input type='text' disabled='disabled' class='invisibletb' id='_" + value.id + "'" + "name='_" + value.id + "'" + "value='" + value.id + "'/></td>";
 
-                        employee_data += "<td><input type='text' disabled='disabled' class='invisibletb'  id='" + value.username + "' " + "name= '" + value.username + "' " + "value= '" + value.username + "'/></td>";
-                        employee_data += "<td><input type='text' disabled='disabled' class='invisibletb'   id='" + value.emailid + "' " + "name= '" + value.emailid + "' " + "value ='" + value.emailid + "'/></td>";
+                        employee_data += "<td><input type='text' disabled='disabled' class='invisibletb'  id='__" + value.username + "' " + "name=__'" + value.username + "' " + "value= '" + value.username + "'/></td>";
+                        employee_data += "<td><input type='text' disabled='disabled' class='invisibletb'   id='___" + value.emailid + "' " + "name=___'" + value.emailid + "' " + "value = '" + value.emailid + "'/></td>";
                         employee_data += '</tr></tbody>';
                     });
                     $('#userdata').append(employee_data);
