@@ -166,7 +166,7 @@
 
                     $(":checkbox:checked").each(function (i) {
                         arr_id[i] = $(this).attr("id");
-                        fetch('https://my-json-server.typicode.com/satishsharmaapo/users/users' + parseInt(arr_id[i]),
+                        fetch('https://my-json-server.typicode.com/satishsharmaapo/users/users/' + parseInt(arr_id[i]),
                             {
                                 method: 'DELETE',
                             })
