@@ -196,8 +196,8 @@
                         employee_data += '<td>' + "<input type='checkbox' class='checkbox1' onclick='' id='" + value.id + "'" + "name='" + value.id + "'/></td>";
                         employee_data += "<td><input type='text' disabled='disabled' class='invisibletb' id='_" + value.id + "'" + "name='_" + value.id + "'" + "value='" + value.id + "'/></td>";
 
-                        employee_data += "<td><input type='text' disabled='disabled' class='invisibletb'  id='__" + value.username + "' " + "name=__'" + value.username + "' " + "value= '" + value.username + "'/></td>";
-                        employee_data += "<td><input type='text' disabled='disabled' class='invisibletb'   id='___" + value.emailid + "' " + "name=___'" + value.emailid + "' " + "value = '" + value.emailid + "'/></td>";
+                        employee_data += "<td><input type='text' disabled='disabled' class='invisibletb'  id='" +value.id+""+ value.username + "' " + "name='" +value.id +""+ value.username + "' " + "value= '" + value.username + "'/></td>";
+                        employee_data += "<td><input type='text' disabled='disabled' class='invisibletb'   id='" +value.id+""+  value.emailid + "'" + "name='" +value.id +""+ value.emailid + "' " + "value = '" + value.emailid + "'/></td>";
                         employee_data += '</tr></tbody>';
                     });
                     $('#userdata').append(employee_data);
