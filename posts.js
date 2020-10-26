@@ -8,7 +8,7 @@ form.addEventListener("submit", function (e) {
   //fetch("https://my-json-server.typicode.com/satishsharmaapo/users/users/", {
    
    // created localhost server using npm installation of json server
-    fetch("http://localhost:3000/users/", {
+    fetch("https://my-json-server.typicode.com/satishsharmaapo/users/users/", {
     method: "POST",
     body: JSON.stringify({
       username: username,
@@ -23,6 +23,6 @@ form.addEventListener("submit", function (e) {
 });
 
 
-fetch('http://localhost:3000/users/')
+fetch('https://my-json-server.typicode.com/satishsharmaapo/users/users/')
   .then((response) => response.json())
   .then((json) => console.log(json))
