@@ -1,14 +1,23 @@
-// this js module is used for posting the form data to the json server in the form of json data
 var form = document.getElementById("form");
+  
+function clearmodal(){
+  $("#username").val("");
+  $("#emailid").val("");
+  $("#editshow").hide();
+  $("#addshow").show();
+  $("#exampleModalLabel").show();
+  $("#exampleModalLabel1").hide();
+}
 form.addEventListener("submit", function (e) {
+   
   var username = document.getElementById("username").value;
   var emailid = document.getElementById("emailid").value;
+ 
    e.preventDefault();
   //fetch post request
-  //fetch("https://my-json-server.typicode.com/satishsharmaapo/users/users/", {
-   
-   // created localhost server using npm installation of json server
-    fetch("https://my-json-server.typicode.com/satishsharmaapo/users/users/", {
+  //fetch("http://localhost:3000/users/", {
+
+    fetch("http://localhost:3000/users/", {
     method: "POST",
     body: JSON.stringify({
       username: username,
@@ -20,9 +29,8 @@ form.addEventListener("submit", function (e) {
   })
     .then((response) => response.json())
     .then((json) => console.log(json));
+    location.reload();
 });
 
 
-fetch('https://my-json-server.typicode.com/satishsharmaapo/users/users/')
-  .then((response) => response.json())
-  .then((json) => console.log(json))
+ 
