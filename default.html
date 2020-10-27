@@ -14,18 +14,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="edit.js" type="text/javascript"></script>
+    
+    <script src="pagination.js" type="text/javascript">    
+    </script>
 
     <style>
         * {
             margin: 10px 50px;
         }
-
-        a {
+        a{
             padding: 4px 0px;
-            margin: 10px auto;
+            margin : 10px auto;
         }
-
         tr,
         th,
         td {
@@ -116,7 +116,7 @@
             position: relative;
             background-color: #fefefe;
             margin: auto;
-
+             
             border: 1px solid #888;
             width: 100%;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -142,12 +142,12 @@
             border: none;
 
         }
-
-        .divpage {
-            margin: auto;
-            width: 50%;
+        .divpage{
+            margin:auto;
+            width:50%;
             padding: 10px;
         }
+        
     </style>
 
 
@@ -155,81 +155,189 @@
 
 
     <script type="text/javascript">
-
-        $(document).ready(function (data) {
-
+         
+        $(document).ready(function (data) {   
+           
             // delete the contents selected 
-            $("#delButton").click(function () {
+            $("#delButton").click(function(){
 
-                if (confirm("are you sure you want to delete")) {
+                if(confirm("are you sure you want to delete"))
+                {
                     var arr_id = [];
-
-                    $(":checkbox:checked").each(function (i) {
+                    
+                    $(":checkbox:checked").each(function(i){
                         arr_id[i] = $(this).attr("id");
-                        fetch('https://my-json-server.typicode.com/satishsharmaapo/users/users/' + parseInt(arr_id[i]),
-                            {
-                                method: 'DELETE',
-                            })
+                        fetch('http://localhost:3000/users/'+parseInt(arr_id[i]),
+                        {
+                            method: 'DELETE',
+                        })
+                        location.reload();
                     })
-                    if (arr_id.length == 0) {
+                    if(arr_id.length == 0){
                         alert("atleast check one");
-                        $('#editButton').attr("disabled", "disabled");
-                    } else if (arr_id.length == 1) {
-                        $('#editButton').prop("disabled", false);
-                        for (var i = 0; i < arr_id.length; i++) {
-                            console.log(arr_id[i]);
+                        
+                    }else if (arr_id.length ==1){
+                         
+                          for(var i = 0;i<arr_id.length;i++){
+                          console.log(arr_id[i]);                             
                         }
                     }
-
+                    
                 }
-                else {
-                    return false;
-                }
+            else{
+                return false;
+            }
+                });
+            // select all check box is
+            $('#checkAll').change(function() {
+               $(this).closest('table').find ('.checkbox1').prop('checked', this.checked);
             });
-
+            
+            // editButton code
+            
+            
+                
             // get list of item is html 
-            $.getJSON("https://my-json-server.typicode.com/satishsharmaapo/users/users", {},
+             $.getJSON("http://localhost:3000/users/", {},
                 function (data) {
                     var employee_data = '';
                     $.each(data, function (key, value) {
                         employee_data += "<tbody><tr>";
-                        employee_data += '<td>' + "<input type='checkbox' class='checkbox1' onclick='' id='" + value.id + "'" + "name='" + value.id + "'/></td>";
-                        employee_data += "<td><input type='text' disabled='disabled' class='invisibletb' id='_" + value.id + "'" + "name='_" + value.id + "'" + "value='" + value.id + "'/></td>";
+                        employee_data += '<td>' + "<input type='checkbox' value='true' class='checkbox1' onclick='' id='" + value.id + "'" + "name='" + value.id + "'/></td>";
+                        employee_data += "<td><input type='text' disabled='disabled' class='invisibletb' id='1" + value.id + "'" + "name='" + value.id + "'" + "value='" + value.id + "'/></td>";
 
-                        employee_data += "<td><input type='text' disabled='disabled' class='invisibletb'  id='" +value.id+""+ value.username + "' " + "name='" +value.id +""+ value.username + "' " + "value= '" + value.username + "'/></td>";
-                        employee_data += "<td><input type='text' disabled='disabled' class='invisibletb'   id='" +value.id+""+  value.emailid + "'" + "name='" +value.id +""+ value.emailid + "' " + "value = '" + value.emailid + "'/></td>";
+                        employee_data += "<td><input type='text' disabled='disabled' class='invisibletb'  id='" + value.username + "' " + "name= '" + value.username + "' " + "value= '" + value.username + "'/></td>";
+                        employee_data += "<td><input type='text' disabled='disabled' class='invisibletb'   id='" + value.emailid + "' " + "name= '" + value.emailid + "' " + "value ='" + value.emailid + "'/></td>";
                         employee_data += '</tr></tbody>';
+                         
                     });
+                    
                     $('#userdata').append(employee_data);
-
+                   
 
                 });
-            $('#userdata').after('<div id="nav"></div>');
-            var rowsShown = 4;
-            var rowsTotal = $('#userdata tbody tr').length;
-            var numPages = rowsTotal / rowsShown;
-            for (i = 0; i < numPages; i++) {
-                var pageNum = i + 10;
-                $('#nav').append('<a href="#" rel="' + i + '">' + pageNum + '</a> ');
-            }
-            $('#userdata tbody tr').hide();
-            $('#userdata tbody tr').slice(0, rowsShown).show();
-            $('#nav a:first').addClass('active');
-            $('#nav a').bind('click', function () {
+            
+                var state = {
+                    'querySet': employee_data,
+                
+                    'page': 1,
+                    'rows': 5,
+                    'window': 5,
+                }
+                
+                buildTable()
+                
+                function pagination(querySet, page, rows) {
+                
+                    var trimStart = (page - 1) * rows
+                    var trimEnd = trimStart + rows
+                
+                    var trimmedData = querySet.slice(trimStart, trimEnd)
+                
+                    var pages = Math.round(querySet.length / rows);
+                
+                    return {
+                        'querySet': trimmedData,
+                        'pages': pages,
+                    }
+                }
+                
+                function pageButtons(pages) {
+                    var wrapper = document.getElementById('pagination-wrapper')
+                
+                    wrapper.innerHTML = ``
+                    console.log('Pages:', pages)
+                
+                    var maxLeft = (state.page - Math.floor(state.window / 2))
+                    var maxRight = (state.page + Math.floor(state.window / 2))
+                
+                    if (maxLeft < 1) {
+                        maxLeft = 1
+                        maxRight = state.window
+                    }
+                
+                    if (maxRight > pages) {
+                        maxLeft = pages - (state.window - 1)
+                        
+                        if (maxLeft < 1){
+                            maxLeft = 1
+                        }
+                        maxRight = pages
+                    }
+                    
+                    
+                
+                    for (var page = maxLeft; page <= maxRight; page++) {
+                        wrapper.innerHTML += `<button value=${page} class="page btn btn-sm btn-info">${page}</button>`
+                    }
+                
+                    if (state.page != 1) {
+                        wrapper.innerHTML = `<button value=${1} class="page btn btn-sm btn-info">&#171; First</button>` + wrapper.innerHTML
+                    }
+                
+                    if (state.page != pages) {
+                        wrapper.innerHTML += `<button value=${pages} class="page btn btn-sm btn-info">Last &#187;</button>`
+                    }
+                
+                    $('.page').on('click', function() {
+                        $('#userdata').empty()
+                
+                        state.page = Number($(this).val())
+                
+                        buildTable()
+                    })
+                
+                }
+                
+                
+                function buildTable() {
+                    var table = $('#userdata')
+                
+                    var data = pagination(state.querySet, state.page, state.rows)
+                    var myList = data.querySet
+                
+                    for (var i = 1 in myList) {
+                        //Keep in mind we are using "Template Litterals to create rows"
+                        var row = `<tr>
+                                  <td>${myList[i].rank}</td>
+                                  <td>${myList[i].first_name}</td>
+                                  <td>${myList[i].last_name}</td>
+                                  `
+                        table.append(row)
+                    }
+                
+                    pageButtons(data.pages)
+                }
+                
 
-                $('#nav a').removeClass('active');
-                $(this).addClass('active');
-                var currPage = $(this).attr('rel');
-                var startItem = currPage * rowsShown;
-                var endItem = startItem + rowsShown;
-                $('#userdata tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
-                    css('display', 'table-row').animate({ opacity: 1 }, 300);
-            });
+            //checkbox editButton
+            
         });
+       // code for enabling edit button
+        $(document).on('change', 'tbody > tr >td .checkbox1', function(){
+            $('#editButton').attr('disabled', $('tbody > tr >td .checkbox1').filter(':checked').length != 1);
+        });
+        $('tbody > tr >td .checkbox1').change();
 
+        //edit model
+        $(document).on('click','#editButton',function(){
+            var form = document.getElementById("form");
+            var id_val= $(":checkbox:checked").attr("id");
+            $("#editshow").show();
+            $("#exampleModalLabel").hide();
+            $("#exampleModalLabel1").show();
+            $("#addshow").hide();
+              fetch('http://localhost:3000/users/'+parseInt(id_val))
+                .then((response) => response.json())
+                .then((json) => {
+                    var output=  json ;                   
+                    $("#username").val(output.emailid);
+                    $("#emailid").val(output.emailid);
 
-
-
+                })
+                 
+        });
+            
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -243,26 +351,26 @@
 
         });
         function close() {
-            document.getElementById(".modal-content").close();
+            document.getElementsByClassName("modal-content").close();
         };
-
-
+              
+   
     </script>
-
+    
 </head>
 
 <body>
     <div class="container">
         <div class="row">
-            <div class="row col-sm">
+            <div class="row col-sm" >
                 <h2>Table FORM</h2>
             </div>
-            <div class="row col-sm">
-                <button type="button" id="editButton" class="btn btn-primary" data-dismiss="modal" style="float:right"
-                    disabled="disabled">Edit</button>
+            <div class="row col-sm" >
+                <button type="button" id="editButton" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#exampleModal"
+                    style="float:right" >Edit</button>
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal"
-                    style="float:right" id="addButton">Add | +</button>
-
+                    style="float:right" id="addButton" onclick="clearmodal()">Add | +</button>
+                
             </div>
         </div>
 
@@ -274,8 +382,9 @@
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add Data</h5>
+                    <div class="modal-header" style="text-align: center;">
+                        <h5 class="modal-title" id="exampleModalLabel" style="text-align: center" value="">Add Data</h5>
+                        <h5 class="modal-title" id="exampleModalLabel1" style="text-align: center" value="">Update Data</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -293,12 +402,16 @@
                                 <input type="text" class="form-control" id="emailid" name="emailid"
                                     style="width:200px;" />
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="addshow">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <input type="submit" class="btn btn-primary" value="Submit" />
+                                <input type="submit" class="btn btn-primary" id="Save" value="Save"   /> 
                                 </button>
                             </div>
-
+                            <div class="form-group" id="editshow">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary"  id="Update" onclick="editModel()">Update</button> 
+                                </button>
+                            </div>
                         </form>
                     </div>
 
@@ -308,7 +421,7 @@
     </div>
     <div class="row">
         <div class="col-sm-10 datatable1" id="nav">
-            <table id="userdata" class="table table-bordered table-condensed table-striped">
+            <table id="userdata" class="pagination table table-bordered table-condensed table-striped" data-pagecount="5">
                 <thead>
                     <tr>
                         <th><input type="checkbox" name="CheckAll" id="checkAll" /></th>
@@ -318,33 +431,27 @@
                     </tr>
                 </thead>
             </table>
-
+            
         </div>
     </div>
-    <div class="row divpage">
+    <div class="row divpage" >
         <div class="col-sm-2 divpage">
-            <button type="button" id="delButton" name="delButton" class="bt btn-light">Delete</button>
+        <button type="button" id="delButton" name="delButton" class="bt btn-light">Delete</button>
         </div>
-        <div class="pagination col-sm-10 divpage">
-
-            <a href="#" id="1">1</a>
-            <a href="#" id="2">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">NEXT &rsaquo;</a>
-
-            <a href="#">Last &raquo;</a>
+        <div class="container ">
+            <div id="pagination-wrapper"></div>
         </div>
+         
     </div>
     <!-- Optional JavaScript -->
 
-
+  
 </body>
-<script src="posts.js" type="text/javascript">
+<script src="posts.js" type="text/javascript">    
 </script>
-<script src="puts.js" type="text/javascript">
+<script src="puts.js" type="text/javascript">    
 </script>
-
-
+<script src="edit.js" type="text/javascript">    
+</script>
 
 </html>
