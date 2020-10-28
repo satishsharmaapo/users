@@ -5,33 +5,32 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <title>Simple CRUD operation</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
-    <title>Simple CRUD operation</title>
+    
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-    <script src="pagination.js" type="text/javascript">
-    </script>
+    
+    
+     
 
     <style>
         * {
             margin: 10px 50px;
         }
-
-        a {
+        a{
             padding: 4px 0px;
-            margin: 10px auto;
+            margin : 10px auto;
         }
-
         tr,
         th,
         td {
             width: 200px;
+            color:black;
         }
 
         .container-fluid {
@@ -42,16 +41,7 @@
             vertical-align: middle
         }
 
-        .pagination {
-            display: inline-block;
-        }
-
-        .pagination a {
-            color: black;
-            float: left;
-            padding: 8px 16px;
-            text-decoration: next;
-        }
+         
 
         .right {
             position: absolute;
@@ -118,7 +108,7 @@
             position: relative;
             background-color: #fefefe;
             margin: auto;
-
+             
             border: 1px solid #888;
             width: 100%;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -144,105 +134,128 @@
             border: none;
 
         }
-
-        .divpage {
-            margin: auto;
-            width: 50%;
+        .divpage{
+            margin:auto;
+            width:50%;
             padding: 10px;
         }
+        .container1 {
+            border: 1px solid rgba(0, 0, 0, .11);
+            
+            padding: 2px;
+            width: auto;
+        }
+        
+         
+        
+        .btn {
+            margin: 5px;
+        }
+        
     </style>
 
-    <script type="text/javascript">
 
-        $(document).ready(function (data) {
+
+
+
+    <script type="text/javascript">
+         
+        $(document).ready(function (data) {   
            $('#editButton').attr("disabled",true);
             // delete the contents selected 
-            $("#delButton").click(function () {
+            $("#delButton").click(function(){
 
-                if (confirm("are you sure you want to delete")) {
+                if(confirm("are you sure you want to delete"))
+                {
                     var arr_id = [];
-
-                    $(":checkbox:checked").each(function (i) {
+                    
+                    $(":checkbox:checked").each(function(i){
                         arr_id[i] = $(this).attr("id");
-                        fetch('https://my-json-server.typicode.com/satishsharmaapo/users/users/' + parseInt(arr_id[i]),
-                            {
-                                method: 'DELETE',
-                            })
+                        fetch('http://localhost:3000/users/'+parseInt(arr_id[i]),
+                        {
+                            method: 'DELETE',
+                        })
                         location.reload();
                     })
-                    if (arr_id.length == 0) {
+                    if(arr_id.length == 0){
                         alert("atleast check one");
-
-                    } else if (arr_id.length == 1) {
-
-                        for (var i = 0; i < arr_id.length; i++) {
-                            console.log(arr_id[i]);
+                        
+                    }else if (arr_id.length ==1){
+                         
+                          for(var i = 0;i<arr_id.length;i++){
+                          console.log(arr_id[i]);                             
                         }
                     }
-
+                    
                 }
-                else {
-                    return false;
-                }
-            });
+            else{
+                return false;
+            }
+                });
             // select all check box is
-            $('#checkAll').change(function () {
-                $(this).closest('table').find('.checkbox1').prop('checked', this.checked);
+            $('#checkAll').change(function() {
+               $(this).closest('table').find ('.checkbox1').prop('checked', this.checked);
             });
-
+            
             // editButton code
-
-
-
+            
+         //-----------------------------------------------//   
+                
             // get list of item is html 
-            $.getJSON("https://my-json-server.typicode.com/satishsharmaapo/users/users/", {},
+             /* $.getJSON("http://localhost:3000/users/", {},
+                 
                 function (data) {
                     var employee_data = '';
                     $.each(data, function (key, value) {
-                        employee_data += "<tbody><tr>";
+                        employee_data += "<tbody id='userdata_tbody'><tr>";
                         employee_data += '<td>' + "<input type='checkbox' value='true' class='checkbox1' onclick='' id='" + value.id + "'" + "name='" + value.id + "'/></td>";
                         employee_data += "<td><input type='text' disabled='disabled' class='invisibletb' id='1" + value.id + "'" + "name='" + value.id + "'" + "value='" + value.id + "'/></td>";
 
                         employee_data += "<td><input type='text' disabled='disabled' class='invisibletb'  id='" + value.username + "' " + "name= '" + value.username + "' " + "value= '" + value.username + "'/></td>";
                         employee_data += "<td><input type='text' disabled='disabled' class='invisibletb'   id='" + value.emailid + "' " + "name= '" + value.emailid + "' " + "value ='" + value.emailid + "'/></td>";
                         employee_data += '</tr></tbody>';
-
+                         
                     });
+                    
+                    //$('#userdata').append(employee_data);
+                   
+                    
+                }); */
+                paginationData();
+        //------------------------------------//
+                 
+                
+                 
+                
 
-                    $('#userdata').append(employee_data);
-
-
-                });
-
-            
             //checkbox editButton
-
+            
         });
-        // code for enabling edit button
-        $(document).on('change', 'tbody > tr >td .checkbox1', function () {
+       // code for enabling edit button
+        $(document).on('change', 'tbody > tr >td .checkbox1', function(){
             $('#editButton').attr('disabled', $('tbody > tr >td .checkbox1').filter(':checked').length != 1);
         });
         $('tbody > tr >td .checkbox1').change();
 
         //edit model
-        $(document).on('click', '#editButton', function () {
+        $(document).on('click','#editButton',function(){
             var form = document.getElementById("form");
-            var id_val = $(":checkbox:checked").attr("id");
+            var id_val= $(":checkbox:checked").attr("id");
             $("#editshow").show();
             $("#exampleModalLabel").hide();
             $("#exampleModalLabel1").show();
             $("#addshow").hide();
-            fetch('https://my-json-server.typicode.com/satishsharmaapo/users/users/' + parseInt(id_val))
+              fetch('http://localhost:3000/users/'+parseInt(id_val))
                 .then((response) => response.json())
                 .then((json) => {
-                    var output = json;
+                    var output=  json ;                   
                     $("#username").val(output.username);
                     $("#emailid").val(output.emailid);
 
                 })
-
+                 
         });
-
+            
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -258,24 +271,24 @@
         function close() {
             document.getElementsByClassName("modal-content").close();
         };
-
-
+              
+   
     </script>
-
+    
 </head>
 
 <body>
     <div class="container">
         <div class="row">
-            <div class="row col-sm">
+            <div class="row col-sm" >
                 <h2>Table FORM</h2>
             </div>
-            <div class="row col-sm">
-                <button type="button" id="editButton" class="btn btn-primary" data-dismiss="modal" data-toggle="modal"
-                    data-target="#exampleModal" style="float:right">Edit</button>
+            <div class="row col-sm" >
+                <button type="button" id="editButton" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#exampleModal"
+                    style="float:right" >Edit</button>
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModal"
                     style="float:right" id="addButton" onclick="clearmodal()">Add | +</button>
-
+                
             </div>
         </div>
 
@@ -289,8 +302,7 @@
                 <div class="modal-content">
                     <div class="modal-header" style="text-align: center;">
                         <h5 class="modal-title" id="exampleModalLabel" style="text-align: center" value="">Add Data</h5>
-                        <h5 class="modal-title" id="exampleModalLabel1" style="text-align: center" value="">Update Data
-                        </h5>
+                        <h5 class="modal-title" id="exampleModalLabel1" style="text-align: center" value="">Update Data</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -310,13 +322,12 @@
                             </div>
                             <div class="form-group" id="addshow">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <input type="submit" class="btn btn-primary" id="Save" value="Save" />
+                                <input type="submit" class="btn btn-primary" id="Save" value="Save"   /> 
                                 </button>
                             </div>
                             <div class="form-group" id="editshow">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" id="Update"
-                                    onclick="editModel()">Update</button>
+                                <button type="button" class="btn btn-primary"  id="Update" onclick="editModel()">Update</button> 
                                 </button>
                             </div>
                         </form>
@@ -326,39 +337,45 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="container1">
         <div class="col-sm-10 datatable1" id="nav">
-            <table id="userdata" class="table table-bordered table-condensed table-striped" >
-                <thead>
+            <table id="userdata" class="table table-dark hv-auto" >
+                <!-- <thead>
                     <tr>
                         <th><input type="checkbox" name="CheckAll" id="checkAll" /></th>
                         <th>User id</th>
                         <th>username</th>
                         <th>Email</th>
                     </tr>
-                </thead>
+                </thead> -->
             </table>
-
-        </div>
-    </div>
-    <div class="row divpage">
-        <div class="col-sm-2 divpage">
-            <button type="button" id="delButton" name="delButton" class="bt btn-light">Delete</button>
-        </div>
-        <div class="">
             
         </div>
+    </div>
+    <div class="row divpage" >
+        <div class="col-sm-2 divpage">
+        <button type="button" id="delButton" name="delButton" class="bt btn-danger">Delete</button>
+        </div>
 
+        <div class="col-sm-10 divpage">
+            <div id="pagination-wrapper"></div>
+        </div>
+         
     </div>
     <!-- Optional JavaScript -->
 
-
+  
 </body>
-<script src="posts.js" type="text/javascript">
+<script src="posts.js" type="text/javascript">    
 </script>
-<script src="puts.js" type="text/javascript">
+<script src="puts.js" type="text/javascript">    
 </script>
-<script src="edit.js" type="text/javascript">
+<script src="edit.js" type="text/javascript">    
 </script>
+<script src="pagination.js" type="text/javascript">    
+</script>
+
+ 
+
 
 </html>
