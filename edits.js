@@ -23,7 +23,7 @@ function editModel() {
       .catch((error) => console.error("Error:", error))
       .then((response) => console.log("Success:", JSON.stringify(response)));
   } else {
-    alert("Please select atmost 1 checkbox for edition");
+    alert("Please select atmost 1 checkbox for update");
   }
   location.reload();
 }
