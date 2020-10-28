@@ -4,7 +4,7 @@
 */
 function paginationData()
 {
-	fetch('https://my-json-server.typicode.com/satishsharmaapo/users/users/')
+	fetch('http://localhost:3000/users/')
      .then((response) => response.json())
 	 .then((json) => {
 		 console.log(json);
