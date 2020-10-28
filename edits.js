@@ -5,7 +5,7 @@ function editModel() {
   //  formData.append('emailid' , emailid);
   //console.log(username + "  " + emailid);
 
-  if ($(":checkbox:checked").attr("id") != undefined) {
+   
     fetch("https://my-json-server.typicode.com/satishsharmaapo/users/users/" + parseInt($(":checkbox:checked").attr("id")),
       {
         method: "PUT",
@@ -21,8 +21,6 @@ function editModel() {
       .then((response) => response.json())
       .catch((error) => console.error("Error:", error))
       .then((response) => console.log("Success:", JSON.stringify(response)));
-  } else {
-    alert("Please select atmost 1 checkbox for update");
-  }
+   
   location.reload();
 }
