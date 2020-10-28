@@ -7,102 +7,57 @@
     }
   ],
   "users": [
+    
     {
-      "id": 2,
-      "username": "rakesh",
-      "emailid": "rakesh@gmail.com"
-    },
-    {
-      "id": 3,
-      "username": "Dev prakash",
-      "emailid": "dev@gmail.com"
-    },
-    {
-      "id": 4,
-      "username": "Niharika",
-      "emailid": "riharika@gmail.com"
-    },
-    {
-      "id": 5,
+      "id": 1,
       "username": "Neelam",
       "emailid": "Neelam@gmail.com"
     },
     {
-      "id": 6,
+      "id": 2,
       "username": "prakash",
       "emailid": "prakash@gmail.com" 
     },
     {
-      "id": 7,
+      "id": 3,
       "username": "satish sharma",
       "emailid": "satishsharma@gmail.com"
+    },
+    {
+      "id": 4,
+      "username": "rakesh",
+      "emailid": "rakesh@gmail.com"
+    },
+    {
+      "id": 5,
+      "username": "Dev prakash",
+      "emailid": "dev@gmail.com"
+    },
+    {
+      "id": 6,
+      "username": "Niharika",
+      "emailid": "riharika@gmail.com"
+    },
+    {
+      "id": 7,
+      "username": "Neelam",
+      "emailid": "Neelam@gmail.com"
     },
     {
       "id": 8,
-      "username": "rakesh",
-      "emailid": "rakesh@gmail.com"
-    },
-    {
-      "id": 9,
-      "username": "Dev prakash",
-      "emailid": "dev@gmail.com"
-    },
-    {
-      "id": 10,
-      "username": "Niharika",
-      "emailid": "riharika@gmail.com"
-    },
-    {
-      "id": 11,
-      "username": "Neelam",
-      "emailid": "Neelam@gmail.com"
-    },
-    {
-      "id": 12,
       "username": "prakash",
       "emailid": "prakash@gmail.com"
     },
     {
-      "id": 13,
+      "id": 9,
       "username": "satish sharma",
       "emailid": "satishsharma@gmail.com"
     },
     {
-      "id": 14,
+      "id": 10,
       "username": "rakesh",
       "emailid": "rakesh@gmail.com"
-    },
-    {
-      "id": 15,
-      "username": "Dev prakash",
-      "emailid": "dev@gmail.com"
-    },
-    {
-      "id": 16,
-      "username": "Niharika",
-      "emailid": "riharika@gmail.com"
-    },
-    {
-      "id": 17,
-      "username": "Neelam",
-      "emailid": "Neelam@gmail.com"
-    },
-    {
-      "id": 18,
-      "username": "prakash",
-      "emailid": "prakash@gmail.com"
-    },
-    {
-      "id": 19,
-      "username": "rajkishor",
-      "emailid": "rajkishor@gmail.com"
-    },
-    {
-      "id": 20,
-      "username": "devanand",
-      "emailid": "devannad@gmail.com"
     }
-     
     
   ]
 }
