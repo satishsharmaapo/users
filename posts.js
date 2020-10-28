@@ -17,7 +17,7 @@ form.addEventListener("submit", function (e) {
   //fetch post request
   //fetch("http://localhost:3000/users/", {
 
-    fetch("http://localhost:3000/users/", {
+    fetch("https://my-json-server.typicode.com/satishsharmaapo/users/users/", {
     method: "POST",
     body: JSON.stringify({
       username: username,
