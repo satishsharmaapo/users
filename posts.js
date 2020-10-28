@@ -1,4 +1,4 @@
-var form = document.getElementById("form");
+
   
 function clearmodal(){
   $("#username").val("");
@@ -8,6 +8,7 @@ function clearmodal(){
   $("#exampleModalLabel").show();
   $("#exampleModalLabel1").hide();
 }
+var form = document.getElementById("form");
 form.addEventListener("submit", function (e) {
    
   var username = document.getElementById("username").value;
