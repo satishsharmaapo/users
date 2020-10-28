@@ -111,26 +111,6 @@
       "id": 22,
       "username": "chandan",
       "emailid": "chandanprakash@gmail.com"
-    },
-    {
-      "id": 23,
-      "username": "stevan",
-      "emailid": "stevanhook@gmail.com"
-    },
-    {
-      "id": 24,
-      "username": "shivaridos",
-      "emailid": "shivaridos@gmail.com"
-    },
-    {
-      "id": 25,
-      "username": "ram prakash",
-      "emailid": "ramprakash@gmail.com"
-    },
-    {
-      "id": 26,
-      "username": "pamamand",
-      "emailid": "pamamand@gmail.com"
-    }    
+    } 
   ]
 }
