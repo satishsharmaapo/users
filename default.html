@@ -171,7 +171,7 @@
                     
                     $(":checkbox:checked").each(function(i){
                         arr_id[i] = $(this).attr("id");
-                        fetch('http://localhost:3000/users/'+parseInt(arr_id[i]),
+                        fetch('https://my-json-server.typicode.com/satishsharmaapo/users/users/'+parseInt(arr_id[i]),
                         {
                             method: 'DELETE',
                         })
@@ -245,7 +245,7 @@
             $("#exampleModalLabel").hide();
             $("#exampleModalLabel1").show();
             $("#addshow").hide();
-              fetch('http://localhost:3000/users/'+parseInt(id_val))
+              fetch('https://my-json-server.typicode.com/satishsharmaapo/users/users/'+parseInt(id_val))
                 .then((response) => response.json())
                 .then((json) => {
                     var output=  json ;                   
