@@ -1,18 +1,18 @@
 function editModel() {
-  var username1 = $("#username").val();
-  var emailid1 = $("#emailid").val();
+  var username = $("#username").val();
+  var emailid = $("#emailid").val();
   //  formData.append('username' , username);
   //  formData.append('emailid' , emailid);
   //console.log(username + "  " + emailid);
 
   if ($(":checkbox:checked").attr("id") != undefined) {
-    fetch("https://my-json-server.typicode.com/satishsharmaapo/users/users/" +
+    fetch("http://localhost:3000/users/" +
         parseInt($(":checkbox:checked").attr("id")),
       {
         method: "PUT",
         body: JSON.stringify({
-          username: username1,
-          emailid: emailid1,
+          username: username,
+          emailid: emailid,
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
