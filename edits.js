@@ -6,7 +6,7 @@ function editModel() {
   //console.log(username + "  " + emailid);
 
   if ($(":checkbox:checked").attr("id") != undefined) {
-    fetch("http://localhost:3000/users/" +
+    fetch("https://my-json-server.typicode.com/satishsharmaapo/users/users/" +
         parseInt($(":checkbox:checked").attr("id")),
       {
         method: "PUT",
